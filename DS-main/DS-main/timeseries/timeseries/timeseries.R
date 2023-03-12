@@ -1,0 +1,19 @@
+install.packages("forecast")
+install.packages("timeSeries")
+library(forecast)
+library(timeSeries)
+a1=table(AirPassengers)
+a1
+View(a1)
+frequency(AirPassengers)
+tsdl=ts(AirPassengers,frequency=12)
+tsdl
+plot(tsdl)
+de=decompose(tsdl,"multiplicative")
+plot(de)
+plot(de$trend)
+plot(de$random)
+plot(de$seasonal)
+boxplot(AirPassengers~cycle(AirPassengers,xlab="date",ylab="passengers count in 1000",main="monthly box plot"))
+model<-arima(AirPassengers)
+model
